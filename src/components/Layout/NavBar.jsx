@@ -26,7 +26,7 @@ const NavBar = () => {
     </>
 
     return (
-        <div className="navbar flex flex-col md:flex-row gap-4 bg-[#ffffff]  px-10">
+        <div className="navbar flex flex-col md:flex-row bg-[#ffffff]  px-10">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost text-grey-700 lg:hidden">
