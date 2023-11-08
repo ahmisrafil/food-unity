@@ -1,15 +1,75 @@
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
-
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Register = () => {
+    const { createUser, googleSignIn } = useContext(AuthContext);
     const [error, setError] = useState("");
     const passRef = useRef(null);
-    const handleRegister=()=>{
+
+
+    const handleRegister = (e)=>{
+        e.preventDefault();
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+
+        setError("");
+
+
+        // create user
+        if(/^(?=.*[A-Z])(?=.*[@#$%^&+=!])(.{6,})$/.test(password)){
+            createUser(email, password)
+            .then(result => {
+                console.log(result.user);
+                e.target.reset();
+                toast.success('Registration Successful!!!', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+
+            })
+            .catch(error => {
+                setError(error.message);
+            })
+        }
+        else if(!/^(.{6,})$/.test(password)){
+            setError('Password must be at least 6 characters');
+        }
+        else if (!/^(?=.*[A-Z]).+$/.test(password)){
+            setError('Password must have a capital latter')
+        }
+        else if(!/^(?=.*[@#$%^&+=!])$/.test(password)){
+            setError('Password must have a special character');
+        }
 
     }
 
-    const handleGoogleSignIn=()=>{
+    const handleGoogleSignIn =()=>{
+        googleSignIn()
+            .then(result => {
+                console.log(result);
+                toast.success('Registration Successful!!!', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            })
+            .catch(error => {
+                setError(error.message);
+            })
 
     }
     return (
@@ -71,7 +131,7 @@ const Register = () => {
                         </div>
                     </div>
                 </div>
-                {/* <ToastContainer /> */}
+                <ToastContainer />
             </div>
         </div>
     );

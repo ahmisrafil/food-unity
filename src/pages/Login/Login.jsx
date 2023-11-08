@@ -1,18 +1,74 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
-import { useState } from "react";
-
+import { useContext, useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+import { AuthContext } from "../../providers/AuthProvider";
 
 
 const Login = () => {
-    const [showPass, setShowPass] = useState();
-    const handleLogin=()=>{
+    const [showPass, setShowPass] = useState(false);
+    const {signInUser} = useContext(AuthContext);
+    const navigate = useNavigate();
+    const { googleSignIn } = useContext(AuthContext);
 
-    }
+const handleLogin = (e) =>{
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
 
 
-const handleGoogleLogIn=()=>{
-    
+    signInUser(email,password)
+    .then(result=>{
+        console.log(result.user);
+        e.target.reset();
+        toast.success("Login Successfull", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+    })
+    .catch(()=>{
+        toast.error("Invalid Email or Password", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+    });
+}
+
+
+
+
+const handleGoogleLogIn = ()=>{
+    googleSignIn()
+    .then(result => {
+        console.log(result);
+        toast.success('Registration Successful!!!', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+        navigate('/');
+    })
+    .catch(error => {
+        console.log(error.message);
+    })
 }
     return (
         <div>
@@ -70,7 +126,7 @@ const handleGoogleLogIn=()=>{
             </div>
             
         </div>
-        {/* <ToastContainer></ToastContainer> */}
+        <ToastContainer></ToastContainer>
     </div>
     );
 };
