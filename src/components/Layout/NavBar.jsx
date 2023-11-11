@@ -9,7 +9,7 @@ const NavBar = () => {
             <NavLink to='/'>Home</NavLink>
         </li>
         <li className="lg:text-gray-700 lg:text-base lg:font-sans  lg:mx-2">
-            <NavLink to='/availablefoods'>Available Foods</NavLink>
+            <NavLink to='/availableFoods'>Available Foods</NavLink>
         </li>
         <li className="lg:text-gray-700 lg:text-base lg:font-sans  lg:mx-2">
             <NavLink to='/addfood'>Add Food</NavLink>

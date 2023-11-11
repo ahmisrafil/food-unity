@@ -12,8 +12,10 @@ const Register = () => {
 
     const handleRegister = (e)=>{
         e.preventDefault();
+        const name = e.target.name.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
+        const photo = e.target.img_url.value;
 
         setError("");
 
@@ -77,7 +79,7 @@ const Register = () => {
             <div>
                 <div className="hero min-h-screen bg-[#ca571469]">
                     <div className="hero-content flex-col lg:flex-row-reverse lg:gap-0">
-                        <div className="text-center lg:text-left lg:bg-[url('https://i.ibb.co/q16dWvh/back.png')] lg:h-[580px] lg: lg:rounded-r-lg lg:p-10 lg:text-white lg:w-1/2">
+                        <div className="text-center lg:text-left lg:bg-[url('https://i.ibb.co/q16dWvh/back.png')] lg:h-[675px] lg: lg:rounded-r-lg lg:p-10 lg:text-white lg:w-1/2">
                             <h1 className="text-5xl font-bold">Register now!</h1>
                             <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
                         </div>
@@ -103,6 +105,15 @@ const Register = () => {
                                         type="password" name="password"
                                         ref={passRef}
                                         placeholder="password" className="input input-bordered" required />
+
+                                </div>
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text">Photo URL</span>
+                                    </label>
+                                    <input
+                                        type="text" name="img_url"
+                                        placeholder="photo url" className="input input-bordered" required />
 
                                 </div>
                                 <div className="form-control mt-6">
