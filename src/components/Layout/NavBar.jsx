@@ -1,8 +1,20 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
 
 
 const NavBar = () => {
-
+    const { user, logOut } = useContext(AuthContext);
+    console.log(user);
+    const handleLogout = () => {
+        logOut()
+            .then(() => {
+                console.log("logged out successfully");
+            })
+            .catch(error => {
+                console.error(error);
+            })
+    }
 
     const navLinks = <>
         <li className="lg:text-gray-700 lg:text-base lg:font-sans  lg:mx-2">
@@ -12,17 +24,20 @@ const NavBar = () => {
             <NavLink to='/availableFoods'>Available Foods</NavLink>
         </li>
         <li className="lg:text-gray-700 lg:text-base lg:font-sans  lg:mx-2">
-            <NavLink to='/addfood'>Add Food</NavLink>
+            <NavLink to='/addFood'>Add Food</NavLink>
         </li>
         <li className="lg:text-gray-700 lg:text-base lg:font-sans  lg:mx-2">
-            <NavLink to='/managefood'>Manage My foods</NavLink>
+            <NavLink to='/manageFood'>Manage My foods</NavLink>
         </li>
         <li className="lg:text-gray-700 lg:text-base lg:font-sans  lg:mx-2">
-            <NavLink to='/foodrequest'>My Food Request</NavLink>
+            <NavLink to='/foodRequest'>My Food Request</NavLink>
         </li>
-        <li className="lg:text-gray-700 lg:text-base lg:font-sans  lg:mx-2">
-            <NavLink to='/login'>Login</NavLink>
-        </li>
+        {
+            !user &&
+            <li className="lg:text-gray-700 lg:text-base lg:font-sans  lg:mx-2">
+                <NavLink to='/login'>Login</NavLink>
+            </li>
+        }
     </>
 
     return (
@@ -47,21 +62,21 @@ const NavBar = () => {
                 </ul>
             </div>
 
-            {/* <div className="navbar-end flex flex-col justify-end md:flex-row">
-            {
-                user && <>
-                    <div className="text-white flex flex-row gap-2 items-center">
-                        <img className="h-[40px] w-[40px] rounded-full " src={user.photoURL} alt="" />
-                        <div>
-                            <p>{user.displayName}</p>
-                            <span className="text-xs mr-2">{user.email}</span>
+            <div className="navbar-end flex flex-col justify-end md:flex-row">
+                {
+                    user && <>
+                        <div className=" flex flex-row gap-2 items-center">
+                            <img className="h-[40px] w-[40px] rounded-full " src={user.photoURL} alt="" />
+                            <div>
+                                <p>{user.displayName}</p>
+                                <span className="text-xs mr-2">{user.email}</span>
+                            </div>
                         </div>
-                    </div>
-                    <button onClick={handleLogout} className="btn btn-sm">Sign Out</button></>
+                        <button onClick={handleLogout} className="btn btn-sm">Sign Out</button></>
 
-            }
+                }
 
-        </div> */}
+            </div>
         </div>
     );
 };
