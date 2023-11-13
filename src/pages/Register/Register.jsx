@@ -79,9 +79,9 @@ const Register = () => {
             <div>
                 <div className="hero min-h-screen bg-[#ca571469]">
                     <div className="hero-content flex-col lg:flex-row-reverse lg:gap-0">
-                        <div className="text-center lg:text-left lg:bg-[url('https://i.ibb.co/q16dWvh/back.png')] lg:h-[675px] lg: lg:rounded-r-lg lg:p-10 lg:text-white lg:w-1/2">
+                        <div className="text-center lg:text-left lg:bg-[url('https://i.ibb.co/q16dWvh/back.png')] lg:h-[672px] lg: lg:rounded-r-lg lg:p-10 lg:text-white lg:w-1/4">
                             <h1 className="text-5xl font-bold">Register now!</h1>
-                            <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                            <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi.</p>
                         </div>
                         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-300 lg:rounded-r-none">
                             <form onSubmit={handleRegister} className="card-body">

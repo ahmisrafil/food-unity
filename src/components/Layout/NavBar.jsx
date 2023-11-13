@@ -23,9 +23,12 @@ const NavBar = () => {
         <li className="lg:text-gray-700 lg:text-base lg:font-sans  lg:mx-2">
             <NavLink to='/availableFoods'>Available Foods</NavLink>
         </li>
-        <li className="lg:text-gray-700 lg:text-base lg:font-sans  lg:mx-2">
-            <NavLink to='/addFood'>Add Food</NavLink>
-        </li>
+        {
+            user &&
+            <li className="lg:text-gray-700 lg:text-base lg:font-sans  lg:mx-2">
+                <NavLink to='/addFood'>Add Food</NavLink>
+            </li>
+        }
         <li className="lg:text-gray-700 lg:text-base lg:font-sans  lg:mx-2">
             <NavLink to='/manageFood'>Manage My foods</NavLink>
         </li>

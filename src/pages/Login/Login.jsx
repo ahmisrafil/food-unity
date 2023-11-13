@@ -120,7 +120,7 @@ const handleGoogleLogIn = ()=>{
                         </div>
                     </div>
                     <div className="text-center mb-4">
-                        <p>Don't Have an Account..! <NavLink className="text-blue-600" to='/register'>Register Now</NavLink> </p>
+                        <p>Do not Have an Account..! <NavLink className="text-blue-600" to='/register'>Register Now</NavLink> </p>
                     </div>
                 </div>
             </div>
