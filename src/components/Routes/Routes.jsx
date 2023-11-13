@@ -9,43 +9,44 @@ import AddFood from "../../pages/AddFood/AddFood";
 
 
 const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Root />,
-      errorElement: <Error></Error>,
-      children: [
-        {
-          path:"/",
-          element: <Home></Home>
+  {
+    path: "/",
+    element: <Root />,
+    errorElement: <Error></Error>,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>
+      },
+      {
+        path: "/login",
+        element: <Login></Login>
+      },
+      {
+        path: "/register",
+        element: <Register></Register>
+      },
+      {
+        path: "/availableFoods",
+        element: <AvailableFoods></AvailableFoods>,
+        loader: ()=>fetch('http://localhost:5000/food')
         },
-        {
-          path:"/login",
-          element: <Login></Login>
-        },
-        {
-          path:"/register",
-          element: <Register></Register>
-        },
-        {
-          path:"/availableFoods",
-          element: <AvailableFoods></AvailableFoods>
-        },
-        {
-          path:"/addFood",
-          element: <AddFood></AddFood>
-        },
-        // {
-        //   path:"/",
-        //   element: 
-        // },
-        // {
-        //   path:"/",
-        //   element: 
-        // },
-      ]
-    },
-  ]);
+      {
+        path: "/addFood",
+        element: <AddFood></AddFood>
+      },
+      // {
+      //   path:"/",
+      //   element: 
+      // },
+      // {
+      //   path:"/",
+      //   element: 
+      // },
+    ]
+  },
+]);
 
 
 
-  export default router;
+export default router;
