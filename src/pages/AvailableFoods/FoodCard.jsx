@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
 
+import { Link } from "react-router-dom";
+
 
 const FoodCard = ({ food }) => {
-    console.log(food);
-    const { donarImage, donarName, image, location, name, note, quantity, validity } = food;
+    // console.log(food);
+    const {_id, donarImage, donarName, image, location, name, note, quantity, validity } = food;
 
     return (
         <div className="card card-compact  mx-5  md:mx-10  mt-10 bg-base-200 shadow-xl ">
@@ -28,7 +30,7 @@ const FoodCard = ({ food }) => {
                 </div>
             </div>
             <div className="text-center mb-10">
-                <button className="btn btn-primary bg-[#57b76a] border-none">View Details</button>
+                <Link to={`/food/${_id}`}><button className="btn btn-primary bg-[#57b76a] border-none">View Details</button></Link>
             </div>
         </div>
     );

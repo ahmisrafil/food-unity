@@ -4,7 +4,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 
 const AvailableFoods = () => {
     const foods = useLoaderData();
-    console.log(foods);
+    // console.log(foods);
     return (
         <div className="my-10">
             <div className="text-center flex flex-col lg:flex-row justify-center gap-14 my-10">
