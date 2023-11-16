@@ -1,18 +1,46 @@
 import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
-
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const FoodDetails = () => {
     const foodDetails = useLoaderData();
     const { user } = useContext(AuthContext);
     console.log(user.email);
     console.log(foodDetails);
-    const { _id, donarImage, donarEmail, donarName, image, location, name, note, quantity, validity } = foodDetails;
+    const email = user.email;
+    const { _id, donarImage, donarEmail, donarName, image, location, name, note, quantity, validity, status } = foodDetails;
 
 
-    const handleRequest =(e)=>{
+    const handleRequest = (e) => {
         e.preventDefault();
+        const donation = e.target.donation.value;
+        const reqNote = e.target.reqNote.value;
+        const reqDate = e.target.reqDate.value;
+        const requestDetails = { donarImage, email, donarEmail, donarName, image, location, name, reqNote, quantity, donation, validity, reqDate, status };
+        fetch('http://localhost:5000/request', {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(requestDetails)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                toast.success('Product Added to Request List!!!', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            })
+
     }
 
 
@@ -115,24 +143,29 @@ const FoodDetails = () => {
                                         <label className="label">
                                             <span className="label-text">Donation Money</span>
                                         </label>
-                                        <input type="text" placeholder="amount to donate" name="donation" className="input input-bordered"  />
+                                        <input type="text" placeholder="amount to donate" name="donation" className="input input-bordered" />
                                     </div>
                                 </div>
 
-                                <div className="form-control mt-6">
+                                <div className="form-control mt-6 modal-action">
+
                                     <input className="btn btn-secondary" type="submit" value="Request Food" />
+                                    <form method="dialog ">
+                                        {/* if there is a button in form, it will close the modal */}
+                                        <button className="btn">Close</button>
+                                    </form>
                                 </div>
                             </form>
                         </div>
-                        <div className="modal-action">
+                        {/* <div className="modal-action">
                             <form method="dialog ">
-                                {/* if there is a button in form, it will close the modal */}
                                 <button className="btn">Close</button>
                             </form>
-                        </div>
+                        </div> */}
                     </div>
                 </dialog>
             </div>
+            <ToastContainer />
         </div>
     );
 };
